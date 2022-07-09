@@ -158,7 +158,8 @@ Exemplo de retorno de erro:
     }
 
 
-7. Webhook
+8. Webhook
+
 Alternativamente, ao invês de ficar consultado periodicamente para checar se o pagamento foi feito, você pode configurar um webook - um endpoint post na sua aplicação -  para ser notificado quando ocorrer o pagamento:
 
     https://meusite.com.br/webook_dobank
