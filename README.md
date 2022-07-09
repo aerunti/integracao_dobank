@@ -4,7 +4,8 @@ Bem vindo à integração mais fácil e prática do mercado!
 
 A integração com a API da Dobank foi desenvolvida para ser o mais simples possível. 
 
-Usamos apenas enpoints POST, e o token é enviado como variável post. 
+Usamos apenas enpoints POST. 
+A autenticação é feita com o envio  do token como variável post. 
 
 1. Acesse sua conta no Dobank, vá em Configurações -> Api de pagamento
 2. Defina as taxas adicionais, se desejar, para pix e BTC
@@ -35,6 +36,7 @@ Usamos apenas enpoints POST, e o token é enviado como variável post.
     a = r.json()
     print(a)
     #adicione o seu código para registrar as informações no banco de dados
+
 
 
 ## Exemplo de retorno (JSON)
