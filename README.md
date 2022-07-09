@@ -13,7 +13,7 @@ A autenticação é feita com o envio  do token como variável post.
 4. Copie o token já gerado. Você pode trocar se desejar. 
 5. implemente  a integração seguindo os modelos abaixo:
 
-## Pagamento (em python/requests)
+## Pagamento (em python/requests) - exemplos em outras linguagens podem ser adicionadas posteriormente, a pedido
 
     import json
     import requests
