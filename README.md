@@ -13,7 +13,9 @@ A autenticação é feita com o envio  do token como variável post.
 4. Copie o token já gerado. Você pode trocar se desejar. 
 5. implemente  a integração seguindo os modelos abaixo:
 
-## Pagamento (exemplo em  python/requests)
+## Pagamento
+
+Exemplo em  python/requests
 
     import json
     import requests
@@ -249,6 +251,7 @@ Exemplo em python
     #adicione o seu código para registrar as informações no banco de dados
 
 Exemplo em php
+
     <?php
     function curl_post($url_endpoint,$payload){
     $ch = curl_init();
