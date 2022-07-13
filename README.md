@@ -13,7 +13,7 @@ A autenticação é feita com o envio  do token como variável post.
 4. Copie o token já gerado. Você pode trocar se desejar. 
 5. implemente  a integração seguindo os modelos abaixo:
 
-## Pagamento (em python/requests) - exemplos em outras linguagens podem ser adicionadas posteriormente, a pedido
+## Pagamento (exemplo em  python/requests)
 
     import json
     import requests
@@ -37,7 +37,39 @@ A autenticação é feita com o envio  do token como variável post.
     print(a)
     #adicione o seu código para registrar as informações no banco de dados
 
+Exemplo em php:
 
+    <?php
+    function curl_post($url_endpoint,$payload){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url_endpoint);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload)); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($response, true);
+      }
+
+      $httpHeader = [];
+      $token = '<SEUTOKEN>';
+
+      $valor = 100.00; // R$ 1,00
+      $metodo = 'btc'; // pix ou 'btc' para bitcoin
+      $payload = [
+        "token" => $token,
+        "amount" => $valor,
+        "method_code" => $metodo
+      ];
+      $url = 'https://dev.dobank.capital/api/';
+      $endpoint = 'pagamento';
+
+
+      $result = curl_post($url.$endpoint,$payload);
+      echo $result.'\n';
+      ?>
 
 ## Exemplo de retorno  pix (JSON)
 
@@ -56,6 +88,10 @@ Atenção:
 **copiaecola** é o código copia e cola para você retornar ao seu cliente na sua interface
 
 **qrcode** é a imagem qrcode em base64 para você exibir ao seu cliente
+**valorcobrado** quando o método é em pix, é o valor a ser pago pelo cliente em reais. Quando em BTC, é o valor a ser transferido em BTC. 
+**valor** é o valor a ser creditado na conta da api. 
+
+
 
 ## Exemplo de retorno Bitcoin (JSON)
 
@@ -109,7 +145,7 @@ Segue um exemplo de como mostrar o codigo qr e o copiaecola em html
 
 Você pode consultar os pagamentos dos últimos 2 dias:
 
-    
+Exemplo em python:    
 
     import json
     import requests
@@ -133,6 +169,39 @@ Você pode consultar os pagamentos dos últimos 2 dias:
     print(a)
     #adicione o seu código para registrar as informações no banco de dados
 
+Exemplo em php:
+
+    <?php
+    function curl_post($url_endpoint,$payload){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url_endpoint);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload)); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+  
+    $response = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($response, true);
+      }
+
+
+      $token = '<SEUTOKEN>';
+
+      //consulta
+      $url = 'https://dev.dobank.capital/api/';
+      $endpoint = 'pagamentos';
+
+
+      $result = curl_post($url.$endpoint,$payload);
+      echo $result.'\n';
+      $txid = "M434SEQ3NGS9"; //txid do retorno do pagamento
+      $payload = [
+        "token" => $token, 
+      ]
+
+      ?>
+
 Exemplo de retorno:
 
     [
@@ -155,8 +224,63 @@ Exemplo de retorno:
 
 ou um pagamento específico 
 
+Exemplo em python
+
+    import json
+    import requests
+    url = 'https://dobank.capital/api/'
+    endpoint = 'pagamentos'
+
+    token = '<SEUTOKEN>'
+    trxid = "VNJ9BHNC4NW5"
+
+    payload = {
+        "token": token, 
+        "trxid": trxid
+    }
+
+    url = url+endpoint
+    print(url, payload)
+    r = requests.post(url, data=payload)
+
+    # print(r.url, r.content, r.status_code)
+    a = r.json()
+    print(a)
+    #adicione o seu código para registrar as informações no banco de dados
+
+Exemplo em php
+    <?php
+    function curl_post($url_endpoint,$payload){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url_endpoint);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload)); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+  
+    $response = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($response, true);
+      }
 
 
+      $token = '<SEUTOKEN>';
+
+      //consulta
+      $url = 'https://dev.dobank.capital/api/';
+      $endpoint = 'pagamentos';
+
+
+      $result = curl_post($url.$endpoint,$payload);
+      echo $result.'\n';
+      $txid = "M434SEQ3NGS9"; //txid do retorno do pagamento
+      $payload = [
+        "token" => $token, 
+      ]
+
+      ?>
+      
+ Na prática a única diferença entre a consulta dos pagamentos dos dois últimos dias e um específico é informar o txid do pagamento. 
 
 
 exemplo de retorno de pagamento específico
