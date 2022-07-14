@@ -73,6 +73,24 @@ Exemplo em php:
       echo $result.'\n';
       ?>
 
+Exemplo em javascript:
+
+    let data = {
+        token: '<SEUTOKEN>',
+        metodo: "pix", //ou btc 
+        amount:5.00 
+      }
+
+      fetch('https://dobank.capital/api/pagamento', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+      .then(response => response.json()) 
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
+
+
 ## Exemplo de retorno  pix (JSON)
 
     {
@@ -204,6 +222,23 @@ Exemplo em php:
 
       ?>
 
+Exemplo em javascript:
+
+    let data = {
+        token: '<SEUTOKEN>',
+    }
+
+    fetch('https://dobank.capital/api/pagamentos', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+      .then(response => response.json()) 
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
+
+
+
 Exemplo de retorno:
 
     [
@@ -282,7 +317,24 @@ Exemplo em php
       ]
 
       ?>
+Exemplo em javascript
+
+     let data = {
+        token: '<SEUTOKEN>',
+        txid: 'XHDIFMASAII'
+    }
+
+    fetch('https://dobank.capital/api/pagamentos', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+      .then(response => response.json()) 
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
       
+      
+
  Na prática a única diferença entre a consulta dos pagamentos dos dois últimos dias e um específico é informar o txid do pagamento. 
 
 
