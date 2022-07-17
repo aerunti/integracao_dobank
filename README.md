@@ -1,4 +1,4 @@
-# Integração API de pagamento Dobank
+# Integração API  Dobank
 
 Bem vindo à integração mais fácil e prática do mercado!
 
@@ -7,20 +7,22 @@ A integração com a API da Dobank foi desenvolvida para ser o mais simples poss
 Usamos apenas enpoints POST. 
 A autenticação é feita com o envio  do token como variável post. 
 
-1. Acesse sua conta no Dobank, vá em Configurações -> Api de pagamento
-2. Defina as taxas adicionais, se desejar, para pix e BTC
+
+
+1. Acesse sua conta no Dobank, vá em Configurações -> API's Dobank
+2. Consulte as taxas para pix e BTC
 3. Informe a URL do seu webhook para receber as informações de retorno
 4. Copie o token já gerado. Você pode trocar se desejar. 
 5. implemente  a integração seguindo os modelos abaixo:
 
-## Pagamento
+## Recebimento
 
 Exemplo em  python/requests
 
     import json
     import requests
     url = 'https://dobank.capital/api/'
-    endpoint = 'pagamento'
+    endpoint = 'recebimento'
 
     token = '<SEUTOKEN>'
     valor = 1.00 # R$ 1,00
@@ -66,7 +68,7 @@ Exemplo em php:
         "method_code" => $metodo
       ];
       $url = 'https://dev.dobank.capital/api/';
-      $endpoint = 'pagamento';
+      $endpoint = 'recebimento';
 
 
       $result = curl_post($url.$endpoint,$payload);
@@ -81,7 +83,7 @@ Exemplo em javascript:
         amount:5.00 
       }
 
-      fetch('https://dobank.capital/api/pagamento', {
+      fetch('https://dobank.capital/api/recebimento', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -103,7 +105,7 @@ Exemplo em javascript:
 
 Atenção:
 
-**txid** é o número da transação que você deve registrar no seu banco de dados para vincular esse pagamento
+**txid** é o número da transação que você deve registrar no seu banco de dados para vincular esse recebimento
 
 **copiaecola** é o código copia e cola para você retornar ao seu cliente na sua interface
 
@@ -161,16 +163,16 @@ Segue um exemplo de como mostrar o codigo qr e o copiaecola em html
 
 6. Aguarde seu cliente efetuar o pagamento. 
 
-7. Retorno do pagamento. 
+7. Retorno do recebimento. 
 
-Você pode consultar os pagamentos dos últimos 2 dias:
+Você pode consultar os recebimentos dos últimos 2 dias:
 
 Exemplo em python:    
 
     import json
     import requests
     url = 'https://dev.dobank.capital/api/'
-    endpoint = 'pagamentos'
+    endpoint = 'recebimentos'
 
     token = '<SEUTOKEN>'
 
@@ -210,12 +212,12 @@ Exemplo em php:
 
       //consulta
       $url = 'https://dev.dobank.capital/api/';
-      $endpoint = 'pagamentos';
+      $endpoint = 'recebimentos';
 
 
       $result = curl_post($url.$endpoint,$payload);
       echo $result.'\n';
-      $txid = "M434SEQ3NGS9"; //txid do retorno do pagamento
+      $txid = "M434SEQ3NGS9"; //txid do retorno do recebimento
       $payload = [
         "token" => $token, 
       ]
@@ -228,7 +230,7 @@ Exemplo em javascript:
         token: '<SEUTOKEN>',
     }
 
-    fetch('https://dobank.capital/api/pagamentos', {
+    fetch('https://dobank.capital/api/recebimentos', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -247,26 +249,26 @@ Exemplo de retorno:
             "method_code": "pix",
             "amount": "1.00000000",
             "amount_charged": "1.51200000",
-            "status": "Aguardando Pagamento"
+            "status": "Aguardando Recebimento"
         },
         {
             "trxid": "SR4SHNC9B8D9",
             "method_code": "pix",
             "amount": "2.00000000",
             "amount_charged": "2.52400000",
-            "status": "Aguardando Pagamento"
+            "status": "Aguardando Recebimento"
         }
     ]
 
 
-ou um pagamento específico 
+ou um recebimento específico 
 
 Exemplo em python
 
     import json
     import requests
     url = 'https://dobank.capital/api/'
-    endpoint = 'pagamentos'
+    endpoint = 'recebimentos'
 
     token = '<SEUTOKEN>'
     trxid = "VNJ9BHNC4NW5"
@@ -306,12 +308,12 @@ Exemplo em php
 
       //consulta
       $url = 'https://dev.dobank.capital/api/';
-      $endpoint = 'pagamentos';
+      $endpoint = 'recebimentos';
 
 
       $result = curl_post($url.$endpoint,$payload);
       echo $result.'\n';
-      $txid = "M434SEQ3NGS9"; //txid do retorno do pagamento
+      $txid = "M434SEQ3NGS9"; //txid do retorno do recebimento
       $payload = [
         "token" => $token, 
       ]
@@ -324,7 +326,7 @@ Exemplo em javascript
         txid: 'XHDIFMASAII'
     }
 
-    fetch('https://dobank.capital/api/pagamentos', {
+    fetch('https://dobank.capital/api/recebimentos', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -335,10 +337,10 @@ Exemplo em javascript
       
       
 
- Na prática a única diferença entre a consulta dos pagamentos dos dois últimos dias e um específico é informar o txid do pagamento. 
+ Na prática a única diferença entre a consulta dos recebimentos dos dois últimos dias e um específico é informar o txid do recebimento. 
 
 
-exemplo de retorno de pagamento específico
+exemplo de retorno de recebimento específico
 
 
 
@@ -348,7 +350,7 @@ exemplo de retorno de pagamento específico
             "method_code": "pix",
             "amount": "1.00000000",
             "amount_charged": "1.51200000",
-            "status": "Aguardando Pagamento"
+            "status": "Aguardando Recebimento"
         }
     ]
 
@@ -362,7 +364,7 @@ Exemplo de retorno de erro:
 
 8. Webhook
 
-Alternativamente, ao invês de ficar consultado periodicamente para checar se o pagamento foi feito, você pode configurar um webook - um endpoint post na sua aplicação -  para ser notificado quando ocorrer o pagamento:
+Alternativamente, ao invês de ficar consultado periodicamente para checar se o recebimento foi feito, você pode configurar um webook - um endpoint post na sua aplicação -  para ser notificado quando ocorrer uma transação da API:
 
     https://meusite.com.br/webook_dobank
 
@@ -376,7 +378,7 @@ o webhook receberá uma mensagem no mesmo formato da consulta individual:
                 "method_code": "pix",
                 "amount": "1.00000000",
                 "amount_charged": "1.51200000",
-                "status": "Pago"
+                "status": "Recebido"
             }
         ]
 
