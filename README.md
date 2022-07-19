@@ -114,7 +114,7 @@ O "qrcode" é a imagem QRcode em base64 para você exibir ao seu cliente.
 A moeda do "valorcobrado" muda de acordo como método  de recebimento. Se o metódo é pix,  o valor é em reais.
 Se o  método é "btc", é o valor exato a ser transferido em BTC (bitcoin). 
 
-O "valor" é o valor a ser creditado na conta da api. 
+O "valor" é o valor a ser creditado.
 
 
 
@@ -132,7 +132,7 @@ O "valor" é o valor a ser creditado na conta da api.
 Note que o retorno do qrcode do bitcoin é uma url, ao invés de uma imagem em base64 e o **valorcobrado** é em BTC
 
 ## html
-Segue um exemplo de como mostrar o codigo qr e o copiaecola em html
+Segue um exemplo de como mostrar o QRcode e o copiaecola em html
 
     <!DOCTYPE html>
 
