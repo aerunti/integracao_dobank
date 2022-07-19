@@ -107,12 +107,12 @@ Atenção:
 
 O "txid" é o número da transação que você deve registrar no seu banco de dados para vincular a este recebimento.
 
-O "copiaecola" é o código copia e cola para você retornar ao seu cliente na sua interface.
+O "copiaecola" é o código copia e cola para você retornar ao seu cliente na sua interface. Quando o metódo é btc, o valor refere-se à carteira BTC para a qual deve ser enviado o "valor cobrado".
 
 O "qrcode" é a imagem QRcode em base64 para você exibir ao seu cliente.
 
-O "valorcobrado" quando o método é em pix, é o valor a ser pago pelo cliente em reais.
-Quando o método é "btc", é o valor a ser transferido em BTC. 
+A moeda do "valorcobrado" muda de acordo como método  de recebimento. Se o metódo é pix,  o valor é em reais.
+Se o  método é "btc", é o valor exato a ser transferido em BTC (bitcoin). 
 
 O "valor" é o valor a ser creditado na conta da api. 
 
