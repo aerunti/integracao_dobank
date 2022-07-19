@@ -168,7 +168,7 @@ Segue um exemplo de como mostrar o QRcode e o copiaecola em html
 
 7. Retorno do recebimento. 
 
-Você pode consultar os recebimentos dos últimos 2 dias:
+A) Você pode consultar os recebimentos dos últimos 2 dias:
 
 Exemplo em python:    
 
@@ -264,9 +264,9 @@ Exemplo de retorno:
     ]
 
 
-ou um recebimento específico 
+B) ou um recebimento específico 
 
-Exemplo em python
+Exemplo em python:
 
     import json
     import requests
@@ -290,7 +290,7 @@ Exemplo em python
     print(a)
     #adicione o seu código para registrar as informações no banco de dados
 
-Exemplo em php
+Exemplo em php:
 
     <?php
     function curl_post($url_endpoint,$payload){
@@ -322,7 +322,7 @@ Exemplo em php
       ]
 
       ?>
-Exemplo em javascript
+Exemplo em javascript:
 
      let data = {
         token: '<SEUTOKEN>',
@@ -340,10 +340,10 @@ Exemplo em javascript
       
       
 
- Na prática a única diferença entre a consulta dos recebimentos dos dois últimos dias e um específico é informar o txid do recebimento. 
+ A única diferença entre a consulta dos recebimentos dos dois últimos dias e um específico é informar o txid do recebimento. 
 
 
-exemplo de retorno de recebimento específico
+Exemplo de retorno de recebimento específico:
 
 
 
@@ -367,13 +367,13 @@ Exemplo de retorno de erro:
 
 8. Webhook
 
-Alternativamente, ao invês de ficar consultado periodicamente para checar se o recebimento foi feito, você pode configurar um webook - um endpoint post na sua aplicação -  para ser notificado quando ocorrer uma transação da API:
+Alternativamente, ao invês de ficar consultado periodicamente para checar se o recebimento foi feito, você pode configurar um webhook - um endpoint POST na sua aplicação -  para ser notificado quando ocorrer uma transação da API:
 
-    https://meusite.com.br/webook_dobank
+    https://meusite.com.br/webhook_dobank
 
 
 
-o webhook receberá uma mensagem no mesmo formato da consulta individual:
+O webhook receberá uma mensagem no mesmo formato da consulta individual:
 
         [
             {
@@ -385,5 +385,5 @@ o webhook receberá uma mensagem no mesmo formato da consulta individual:
             }
         ]
 
-é recomendado que se configure o webhook para só receber mensagens de https://dobank.capital
+Recomendamos que o webhook seja configurado  para receber somente desse endereço https://dobank.capital
 
