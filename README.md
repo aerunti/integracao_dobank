@@ -9,15 +9,16 @@ A autenticação é feita com o envio  do token como variável post.
 
 
 
-1. Acesse sua conta no Dobank, vá em Configurações -> API's Dobank
-2. Consulte as taxas para pix e BTC
-3. Informe a URL do seu webhook para receber as informações de retorno
-4. Copie o token já gerado. Você pode trocar se desejar. 
-5. implemente  a integração seguindo os modelos abaixo:
+1. Acesse sua conta Dobank;
+2. Vá em Configurações -> API's Dobank;
+3. Consulte as taxas para Pix e Btc;
+4. Informe a URL do seu webhook para receber as informações do retorno;
+5. Copie o token já gerado (você pode trocar se desejar);
+6. implemente  a integração seguindo os modelos abaixo.
 
 ## Recebimento
 
-Exemplo em  python/requests
+Exemplo em  python/requests:
 
     import json
     import requests
@@ -67,7 +68,7 @@ Exemplo em php:
         "amount" => $valor,
         "method_code" => $metodo
       ];
-      $url = 'https://dev.dobank.capital/api/';
+      $url = 'https://dobank.capital/api/';
       $endpoint = 'recebimento';
 
 
@@ -93,7 +94,7 @@ Exemplo em javascript:
       .catch(err => console.log(err));
 
 
-## Exemplo de retorno  pix (JSON)
+## Exemplo de retorno  Pix (JSON)
 
     {
     "txid": "1e156a2b9f94215f2a84c1c308d4db50",
@@ -103,7 +104,7 @@ Exemplo em javascript:
     "valor": "2.00000000"
 }
 
-Atenção:
+Observações:
 
 O "txid" é o número da transação que você deve registrar no seu banco de dados para vincular a este recebimento.
 
@@ -129,7 +130,7 @@ O "valor" é o valor a ser creditado.
     "method_code": "btc"
     }
 
-Note que o retorno do qrcode do bitcoin é uma url, ao invés de uma imagem em base64 e o **valorcobrado** é em BTC
+Note que o retorno do QRcode do bitcoin é uma url ao invés de uma imagem em base64 e o **valorcobrado** é em BTC.
 
 ## html
 Segue um exemplo de como mostrar o QRcode e o copiaecola em html
@@ -168,13 +169,13 @@ Segue um exemplo de como mostrar o QRcode e o copiaecola em html
 
 7. Retorno do recebimento. 
 
-A) Você pode consultar os recebimentos dos últimos 2 dias:
+### A) Você pode consultar os recebimentos dos últimos 2 dias:
 
 Exemplo em python:    
 
     import json
     import requests
-    url = 'https://dev.dobank.capital/api/'
+    url = 'https://dobank.capital/api/'
     endpoint = 'recebimentos'
 
     token = '<SEUTOKEN>'
@@ -214,7 +215,7 @@ Exemplo em php:
       $token = '<SEUTOKEN>';
 
       //consulta
-      $url = 'https://dev.dobank.capital/api/';
+      $url = 'https://dobank.capital/api/';
       $endpoint = 'recebimentos';
 
 
@@ -264,7 +265,7 @@ Exemplo de retorno:
     ]
 
 
-B) ou um recebimento específico 
+### B) Para consultar um recebimento específico 
 
 Exemplo em python:
 
@@ -310,7 +311,7 @@ Exemplo em php:
       $token = '<SEUTOKEN>';
 
       //consulta
-      $url = 'https://dev.dobank.capital/api/';
+      $url = 'https://dobank.capital/api/';
       $endpoint = 'recebimentos';
 
 
@@ -322,6 +323,7 @@ Exemplo em php:
       ]
 
       ?>
+      
 Exemplo em javascript:
 
      let data = {
@@ -340,7 +342,7 @@ Exemplo em javascript:
       
       
 
- A única diferença entre a consulta dos recebimentos dos dois últimos dias e um específico é informar o txid do recebimento. 
+ A única diferença entre a consulta dos recebimentos dos dois últimos dias e uma transação específica é informar o txid do recebimento. 
 
 
 Exemplo de retorno de recebimento específico:
@@ -367,7 +369,9 @@ Exemplo de retorno de erro:
 
 8. Webhook
 
-Alternativamente, ao invês de ficar consultado periodicamente para checar se o recebimento foi feito, você pode configurar um webhook - um endpoint POST na sua aplicação -  para ser notificado quando ocorrer uma transação da API:
+Alternativamente, ao invês de ficar consultando periodicamente para checar se o recebimento foi feito, você pode configurar um webhook - um endpoint POST na sua aplicação -  para ser notificado quando ocorrer uma transação da API. ]
+
+Exemplo:
 
     https://meusite.com.br/webhook_dobank
 
@@ -385,5 +389,5 @@ O webhook receberá uma mensagem no mesmo formato da consulta individual:
             }
         ]
 
-Recomendamos que o webhook seja configurado  para receber somente desse endereço https://dobank.capital
+Recomendamos que o webhook seja configurado  para receber solicitações somente do domínio https://dobank.capital
 
