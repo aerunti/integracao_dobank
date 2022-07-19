@@ -105,13 +105,16 @@ Exemplo em javascript:
 
 Atenção:
 
-**txid** é o número da transação que você deve registrar no seu banco de dados para vincular esse recebimento
+O "txid" é o número da transação que você deve registrar no seu banco de dados para vincular este recebimento.
 
-**copiaecola** é o código copia e cola para você retornar ao seu cliente na sua interface
+O "copiaecola" é o código copia e cola para você retornar ao seu cliente na sua interface.
 
-**qrcode** é a imagem qrcode em base64 para você exibir ao seu cliente
-**valorcobrado** quando o método é em pix, é o valor a ser pago pelo cliente em reais. Quando em BTC, é o valor a ser transferido em BTC. 
-**valor** é o valor a ser creditado na conta da api. 
+O "qrcode" é a imagem QRcode em base64 para você exibir ao seu cliente.
+
+O "valorcobrado" quando o método é em pix, é o valor a ser pago pelo cliente em reais.
+Quando em BTC, é o valor a ser transferido em BTC. 
+
+O "valor" é o valor a ser creditado na conta da api. 
 
 
 
@@ -152,10 +155,10 @@ Segue um exemplo de como mostrar o codigo qr e o copiaecola em html
     function copyPix() {
 
     /* Copy the text inside the text field */
-    navigator.clipboard.writeText('00020101021226910014br.gov.bcb.pix2569api.developer.btgpactual.com/v1/p/v2/3694771894b9437fbfcee755d981b02f5204000053039865802BR5925Dobank Tecnologia em Paga6011So Paulo SP62070503***63048847');
+    navigator.clipboard.writeText('00020101021226910014br.gov.bcb.pix2569api.developer.dobank.capital/v1/p/v2/3694771894b9437fbfcee755d981b02f5204000053039865802BR5925Dobank Tecnologia em Paga6011So Paulo SP62070503***63048847');
 
     /* Alert the copied text */
-    /*   alert("Pix copiado: 00020101021226910014br.gov.bcb.pix2569api.developer.btgpactual.com/v1/p/v2/3694771894b9437fbfcee755d981b02f5204000053039865802BR5925Dobank Tecnologia em Paga6011So Paulo SP62070503***63048847" ); */
+    /*   alert("Pix copiado: 00020101021226910014br.gov.bcb.pix2569api.developer.dobank.capital/v1/p/v2/3694771894b9437fbfcee755d981b02f5204000053039865802BR5925Dobank Tecnologia em Paga6011So Paulo SP62070503***63048847" ); */
     }
     </script>
 
