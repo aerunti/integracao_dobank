@@ -105,14 +105,14 @@ Exemplo em javascript:
 
 Atenção:
 
-O "txid" é o número da transação que você deve registrar no seu banco de dados para vincular este recebimento.
+O "txid" é o número da transação que você deve registrar no seu banco de dados para vincular a este recebimento.
 
 O "copiaecola" é o código copia e cola para você retornar ao seu cliente na sua interface.
 
 O "qrcode" é a imagem QRcode em base64 para você exibir ao seu cliente.
 
 O "valorcobrado" quando o método é em pix, é o valor a ser pago pelo cliente em reais.
-Quando em BTC, é o valor a ser transferido em BTC. 
+Quando o método é "btc", é o valor a ser transferido em BTC. 
 
 O "valor" é o valor a ser creditado na conta da api. 
 
